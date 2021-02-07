@@ -47,9 +47,14 @@ let test_mutable () =
      assert (not (isEmpty que))    ;
      assert (getSize que = 3)      ;
      assert (pop que     = Some 3) ;
+     assert (getSize que = 2)      ;
+     assert (!que.last   = 2)      ;
      assert (dequeue que = Some 1) ;
+     assert (getSize que = 1)      ;
+     assert (!que.last   = 1)      ;
      assert (pop que     = Some 2) ;
      assert (getSize que = 0)      ;
+     assert (!que.last   = 0)      ;
      assert (pop que     = None)   ;
      
      insert que 7 ;
@@ -73,3 +78,14 @@ let () =
   test_mutable () ;
   Js.log "If you see this, everything went fine :)" ;
   ()
+
+
+  (*
+    let q = make 5 
+  in insert q 1;
+     insert q 2;
+     insert q 3;
+     Js.log q  ;
+  let _ = dequeue q;
+  in Js.log q;
+  *)
