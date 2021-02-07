@@ -44,18 +44,22 @@ let test_mutable () =
      insert que 2 ; 
      insert que 3 ;
 
-     assert (not (isEmpty que))    ;
-     assert (getSize que = 3)      ;
-     assert (pop que     = Some 3) ;
-     assert (getSize que = 2)      ;
-     assert (!que.last   = 2)      ;
-     assert (dequeue que = Some 1) ;
-     assert (getSize que = 1)      ;
-     assert (!que.last   = 1)      ;
-     assert (pop que     = Some 2) ;
-     assert (getSize que = 0)      ;
-     assert (!que.last   = 0)      ;
-     assert (pop que     = None)   ;
+     assert (not (isEmpty que))         ;
+     assert (getSize que = 3)           ;
+     assert (pop que     = Some 3)      ;
+     assert (getSize que = 2)           ;
+     assert (!que.last   = 2)           ;
+     assert (Array.fold_left 
+             Helpers.count_some 
+             0 
+             (!que.arr)  = getSize que) ;
+     assert (dequeue que = Some 1)      ;
+     assert (getSize que = 1)           ;
+     assert (!que.last   = 1)           ;
+     assert (pop que     = Some 2)      ;
+     assert (getSize que = 0)           ;
+     assert (!que.last   = 0)           ;
+     assert (pop que     = None)        ;
      
      insert que 7 ;
      insert que 8 ; 
@@ -78,14 +82,3 @@ let () =
   test_mutable () ;
   Js.log "If you see this, everything went fine :)" ;
   ()
-
-
-  (*
-    let q = make 5 
-  in insert q 1;
-     insert q 2;
-     insert q 3;
-     Js.log q  ;
-  let _ = dequeue q;
-  in Js.log q;
-  *)

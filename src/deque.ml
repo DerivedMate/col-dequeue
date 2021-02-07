@@ -10,7 +10,7 @@ exception Filled
 module Internal = struct
   let reorder q =
     let rec aux xs i =
-      if i != q.first + 1 then 
+      if i != q.last then 
         begin
           xs.(i)           <- xs.(i + q.first) ;
           xs.(i + q.first) <- None ;
